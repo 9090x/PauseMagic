@@ -37,7 +37,7 @@ def get_process_subtree(pid: int):
 def dump_edit(massage: str, time: bool=True, new: bool=False):
     """Edit dump file."""
     if new:
-        with open("dump", "r", encoding="utf-8") as Dfile:
+        with open("dump", "w", encoding="utf-8") as Dfile:
             Dfile.write(f"[{datetime.now()}]|{massage}" if time else massage)
     
     else:
