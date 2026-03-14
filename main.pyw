@@ -72,13 +72,17 @@ while True:
 
             proc_list = list(map(psutil.Process, get_process_subtree(pid)))
             for proc in proc_list:
-                proc.suspend()
+                try:
+                    proc.suspend()
+                except psutil.NoSuchProcess: pass
 
             sleep(0.2)
 
             k_wait(keys_bind)
             for proc in proc_list:
-                proc.resume()
+                try:
+                    proc.resume()
+                except psutil.NoSuchProcess: pass
 
             sleep(0.5)
         except Exception as error:
